@@ -25,7 +25,7 @@ const configRouter = {
     {
       path: 'edit/:id(\\d+)',
       component: () => import('@/views/sys-config/edit'),
-      name: 'ConfigAdd',
+      name: 'ConfigEdit',
       meta: { title: '编辑配置', noCache: true },
       hidden: true
     }

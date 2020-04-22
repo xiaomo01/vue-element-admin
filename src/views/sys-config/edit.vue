@@ -22,7 +22,7 @@
     </el-form-item>
 
     <el-form-item>
-      <el-button type="primary" @click="onSubmit">确认修改</el-button>
+      <el-button type="primary" @click="onSubmit"> 确认修改 </el-button>
     </el-form-item>
 
   </el-form>
@@ -30,12 +30,14 @@
 <script>
 
 import { configAdd } from '@/api/config'
+import { findById } from '@/api/config'
 
 export default {
-  name: 'ConfigEdie',
+  name: 'ConfigEdit',
   data() {
     return {
       form: {
+        id: '',
         config_key: '',
         config_value: '',
         config_content: '',
@@ -44,12 +46,25 @@ export default {
       }
     }
   },
+  created() {
+    this.getObjById()
+  },
   methods: {
+    getObjById() {
+      this.form.id = this.$route.params && this.$route.params.id
+      const param = { id: this.form.id }
+      findById(param).then(response => {
+        this.form = response.data.obj
+      })
+    },
     onSubmit() {
       this.loading = true
       configAdd(this.form).then(response => {
-        console.log(response)
         this.loading = false
+        this.$message({
+          type: 'success',
+          message: '编辑成功'
+        })
       })
     }
   }

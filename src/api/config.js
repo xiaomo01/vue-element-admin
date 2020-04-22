@@ -23,3 +23,11 @@ export function deleteItem(id) {
     params: id
   })
 }
+
+export function findById(id) {
+  return request({
+    url: '/sys-config/edit',
+    method: 'post',
+    params: id
+  })
+}

@@ -9,10 +9,10 @@ const image_uri = 'https://wpimg.wallstcn.com/e4558086-631c-425c-9430-56ffb46e70
 for (let i = 0; i < count; i++) {
   List.push(Mock.mock({
     id: i,
-    config_key: 'config_key',
-    config_content: 'config_content',
-    config_value: 'config_value',
-    remark: 'remark',
+    config_key: 'config_key ' + i,
+    config_content: 'config_content' + i,
+    config_value: 'config_value' + i,
+    remark: 'remark' + i,
     sort_num: i,
     content: baseContent,
     image_uri
@@ -69,6 +69,22 @@ export default [
         str: 'success'
       }
     }
+  },
+  {
+    url: '/sys-config/edit',
+    type: 'post',
+    response: params => {
+      const { id } = params.query
+      console.log('id=' + id)
+      return {
+        code: 20000,
+        str: 'success',
+        data: {
+          obj: List[id]
+        }
+      }
+    }
   }
+
 ]
 

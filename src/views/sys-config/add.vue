@@ -48,8 +48,11 @@ export default {
     onSubmit() {
       this.loading = true
       configAdd(this.form).then(response => {
-        console.log(response)
         this.loading = false
+        this.$message({
+          type: 'success',
+          message: '添加成功'
+        })
       })
     }
   }
